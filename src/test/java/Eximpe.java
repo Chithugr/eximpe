@@ -18,7 +18,7 @@ public class Eximpe {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
-
+    //Go to https://eximpe.com/
     @Test
     public void Open() throws InterruptedException {
         driver.get("https://eximpe.com/");
@@ -26,6 +26,7 @@ public class Eximpe {
         System.out.println("Page Title: " + pageTitle);
         Thread.sleep(5000);
     }
+    //Navigate to the "About" section and then to the "About EximPe" page.
     @Test(priority=1)
     public void About() throws InterruptedException {
         WebElement about=driver.findElement(By.xpath("//*[@id=\"menu-1-366d1e90\"]/li[4]"));
@@ -36,19 +37,18 @@ public class Eximpe {
 
     }
 
+    // Locate and retrieve the value indicating the number of employees working at EximPe
     @Test(priority=2)
     public void Employee(){
         List<WebElement> emp=driver.findElements(By.tagName("h4"));
         int sizeofi=emp.size();
         System.out.println("total number of employees="+sizeofi);
 
-        //list of employees and their roles
         List<WebElement> e = driver.findElements(By.xpath("//*[@id=\"content\"]/div/div[1]/section[2]/div[2]/div/div/section"));
         for (WebElement l : e) {
             String employee = l.getText();
             System.out.println(employee);
         }
-
     }
 
     @AfterClass
